@@ -1,0 +1,271 @@
+<!-- <div class="max-md:11/12 md:w-7/12 my-6 mx-auto">
+    <h1 class="text-blue-600 text-center text-5xl font-semibold py-4">Linked Posts</h1>
+    <form [formGroup]="signUpForm" class="shadow-lg bg-white p-8" (ngSubmit)="sendSignUp()">
+        <h2 class="text-2xl text-blue-500 font-bold">Register Now</h2>
+        <div>
+            <input formControlName="name" type="text" id="text" class="my-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type Your Name ..." />
+            @if (signUpForm.get('name')?.errors && signUpForm.get('name')?.touched) {
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    @if (signUpForm.get('name')?.errors?.['required'] && signUpForm.get('name')?.touched) {
+                        <p>Name Is Required</p>
+                    }
+                    @else if (signUpForm.get('name')?.errors?.['minlength']) {
+                        <p>Name must be more than 2 char.</p>
+                    }
+                    @else {
+                        <p>Name must be less than 20 char.</p>
+                    }
+                </div>
+            }
+        </div>
+        
+        <div>
+            <input formControlName="email" type="email" id="email" class="my-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type Your Email ..." />
+            @if (signUpForm.get('email')?.errors && signUpForm.get('email')?.touched) {
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    @if (signUpForm.get('email')?.errors?.['required'] && signUpForm.get('email')?.touched) {
+                        <p>email Is Required</p>
+                    }
+                    @else  {
+                        <p>Email must be valid</p>
+                    }
+                </div>
+            }
+        </div>
+        
+        <div>
+            <input formControlName="password" type="text" id="password" class="my-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type Your Password" />
+            @if (signUpForm.get('password')?.errors && signUpForm.get('password')?.touched) {
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    @if (signUpForm.get('password')?.errors?.['required'] && signUpForm.get('password')?.touched) {
+                        <p>Password Is Required</p>
+                    }
+                    @else  {
+                        <p>Password must be at least 8 char which contains:
+                            <br>- small letter
+                            <br>- large letter
+                            <br>- number
+                            <br>- char.(#?!&#64;$%^&*-)
+                        </p>
+                    }
+                </div>
+            }
+        </div>
+        
+        <div>
+            <input formControlName="rePassword" type="text" id="rePassword" class="my-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type Your repassword" />
+            @if (signUpForm.get('rePassword')?.errors && signUpForm.get('rePassword')?.touched) {
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    @if (signUpForm.get('rePassword')?.errors?.['required'] && signUpForm.get('rePassword')?.touched) {
+                        <p>rePassword Is Required</p>
+                    }
+                    @else  {
+                        <p>rePassword must be at least 8 char which contains:
+                            <br>- small letter
+                            <br>- large letter
+                            <br>- number
+                            <br>- char.(#?!&#64;$%^&*-)
+                        </p>
+                    }
+                </div>
+            }
+        </div>
+
+        @if (signUpForm.get('password')?.value != signUpForm.get('rePassword')?.value && signUpForm.get('password')?.touched && signUpForm.get('rePassword')?.touched) {
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+               <p>password not matched</p>
+            </div>
+        }
+        
+        <div>
+            <input formControlName="dateOfBirth" type="date" id="date" class="my-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type your BirthDate" />  
+            @if(signUpForm.get('dateOfBirth')?.errors && signUpForm.get('dateOfBirth')?.touched){
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                   <p>please pick your birth date</p>
+                </div>
+            }
+        </div>
+       
+        <div>
+            <fieldset class="flex gap-3">
+                <legend class="sr-only">Gender</legend>
+                <div class="flex items-center mb-4">
+                <input formControlName="gender" id="male" type="radio" name="gender" value="male" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                <label for="male" class="block ms-1  text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
+                </div>
+                <div class="flex items-center mb-4">
+                <input formControlName="gender" id="female" type="radio" name="gender" value="female" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                <label for="female" class="block ms-1 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
+                </div>
+            </fieldset>
+            @if(signUpForm.get('gender')?.errors && signUpForm.get('dateOfBirth')?.touched){
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                   <p>please select your gender</p>
+                </div>
+            }
+        </div>
+        <button [disabled]="signUpForm.invalid" type="submit" class="text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Sign Up</button>
+        <a routerLink="/signin" class="text-blue-600 hover:underline cursor-pointer"> You have an account? Log in Now</a>
+    </form>
+</div> -->
+
+
+
+
+<div class="p-15 ">
+    <h1 class="text-center py-8 text-blue-600 text-6xl font-medium">Linked Posts</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="sendSignUp()" class="w-3/4 mx-auto p-12 bg-white rounded-lg">
+        <h1 class="text-blue-700 font-bold py-3 ps-2 text-xl">Register Now</h1>
+
+
+        <div class="mb-5">
+            <input formControlName="name" type="text"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Type your name..." required />
+                
+                @if (signUpForm.get('name')?.errors && signUpForm.get('name')?.touched) {
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                          @if (signUpForm.get('name')?.errors?.['required']) {
+                            <span class="font-medium">name is required!</span>
+                          }
+                          @else if (signUpForm.get('name')?.errors?.['minlength']) {
+                            <span class="font-medium">The name must be more than 3 letters.</span>
+                          }
+                          @else if (signUpForm.get('name')?.errors?.['maxlength']) {
+                            <span class="font-medium">The name must be less than 20 letters.</span>
+                          }
+                        </div>
+                      </div>
+                }
+        </div>
+
+        <div class="mb-5">
+            <input formControlName="email" type="email" id="email"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Type your email..." required />
+
+                @if (signUpForm.get('email')?.errors && signUpForm.get('email')?.touched) {
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                          @if (signUpForm.get('email')?.errors?.['required']) {
+                            <span class="font-medium">email is required!</span>
+                          }
+                          @else if (signUpForm.get('email')?.errors?.['email']) {
+                            <span class="font-medium">kindly enter valid email</span>
+                          }
+                          
+                        </div>
+                      </div>
+                }
+        </div>
+
+        <div class="mb-5">
+            <input formControlName="password" type="password" id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Type your password" required />
+
+                @if (signUpForm.get('password')?.errors && signUpForm.get('password')?.touched) {
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                          @if (signUpForm.get('password')?.errors?.['required']) {
+                            <span class="font-medium">password is required!</span>
+                          }
+                          @else if (signUpForm.get('password')?.errors?.['pattern']) {
+                            <span class="font-medium">kindly enter valid password</span>
+                          }
+                          
+                        </div>
+                      </div>
+                }
+        </div>
+
+        <div class="mb-5">
+            <input formControlName="rePassword" type="password" id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Type your repassword" required />
+
+                @if (signUpForm.get('rePassword')?.errors && signUpForm.get('rePassword')?.touched) {
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                          @if (signUpForm.get('rePassword')?.errors?.['required']) {
+                            <span class="font-medium">repassword is required!</span>
+                          }
+                          @else if (signUpForm.get('rePassword')?.errors?.['pattern']) {
+                            <span class="font-medium">kindly enter valid repassword</span>
+                          }
+                          
+                        </div>
+                        @if (signUpForm.errors?.['match']) {
+                            <div class="flex items-center p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                </svg>
+                            <span class="font-medium">repassword is not match</span>
+                            </div>
+                        }
+                      </div>
+                }
+        </div>
+
+        <div class="mb-5">
+            <input formControlName="dateOfBirth" type="date" id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Type your date of birth" required />
+
+                @if (signUpForm.get('dateOfBirth')?.errors && signUpForm.get('dateOfBirth')?.touched) {
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div>
+                          @if (signUpForm.get('dateOfBirth')?.errors?.['required']) {
+                            <span class="font-medium">Date is required!</span>
+                          }
+                          <!-- @else if (signUpForm.get('dateOfBirth')?.errors?.['pattern']) {
+                            <span class="font-medium"></span>
+                          } -->
+                          
+                        </div>
+                      </div>
+                }
+        </div>
+
+        <div class="flex gap-3">
+            <div class="flex items-center mb-4">
+                <input formControlName="gender" id="country-option-1" type="radio" value="male"
+                    class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
+                    checked name="gender">
+                <label for="country-option-1" class="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
+                    male
+                </label>
+            </div>
+
+            <div class="flex items-center mb-4">
+                <input formControlName="gender" id="country-option-1" type="radio" value="female"
+                    class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
+                    checked name="gender">
+                <label for="country-option-1" class="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
+                    female
+                </label>
+            </div>
+
+        </div>
+
+        <button [disabled]="signUpForm.invalid" type="submit" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Signup
+            
+        </button>
+    </form>
+</div>

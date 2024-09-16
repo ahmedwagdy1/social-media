@@ -1,0 +1,63 @@
+ 
+
+
+
+<div [formGroup]="signInForm" (ngSubmit)="sendSignIn()" class="p-15 ">
+    <h1 class="text-center py-8 text-blue-600 text-6xl font-medium">Linked Posts</h1>
+   
+    <form    class="w-3/4 mx-auto p-12 bg-white rounded-lg">
+        <h1 class="text-blue-700 font-bold py-3 ps-2 text-xl">Login Now</h1>
+        
+        <div class="mb-5">
+          <input formControlName="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type your email..." required />
+
+          @if (signInForm.get('email')?.errors && signInForm.get('email')?.touched) {
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <div>
+                  @if (signInForm.get('email')?.errors?.['required']) {
+                    <span class="font-medium">email is required!</span>
+                  }
+                  @else if (signInForm.get('email')?.errors?.['email']) {
+                    <span class="font-medium">kindly enter valid email</span>
+                  }
+                  
+                </div>
+              </div>
+        }
+        </div>
+    
+        <div class="mb-5">
+          <input formControlName="password" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type your password" required />
+
+          @if (signInForm.get('password')?.errors && signInForm.get('password')?.touched) {
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <div>
+                  @if (signInForm.get('password')?.errors?.['required']) {
+                    <span class="font-medium">password is required!</span>
+                  }
+                  @else if (signInForm.get('password')?.errors?.['pattern']) {
+                    <span class="font-medium"><p>Password must be at least 8 char which contains:
+                        <br>- small letter
+                        <br>- large letter
+                        <br>- number
+                        <br>- char.(#?!&#64;$%^&*-)
+                    </p></span>
+                  }
+                  
+                </div>
+              </div>
+        }
+        </div>
+    
+        <button  type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Signin
+        </button>
+        <p class="py-3">No registered? <span class="text-blue-700 cursor-pointer" routerLink="/signup">Creat account</span></p>
+      </form>
+</div>
+  

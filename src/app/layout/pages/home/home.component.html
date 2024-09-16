@@ -1,0 +1,29 @@
+
+<div class="w-10/12 md:w-7/12 lg:w-4/12 mx-auto">
+    <app-create-post></app-create-post>
+    @for (post of postsArr; track $index) {
+        <div class="my-3 bg-white rounded-lg p-5">
+                <div class="my-2 flex justify-between">
+                    <div class="flex items-center">
+                        <img class="w-12 rounded-full" [src]="post?.user?.photo" alt="">
+                        <div class="px-3">
+                            <h2 class="font-bold">{{post?.user?.name}}</h2>
+                            <span class="text-sm text-slate-500">{{post.createdAt | date}}</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                       
+                    </div>
+                </div>
+                <p class="pb-2">{{post.body}}</p>
+                <img [src]="post.image" class="rounded-lg" alt="">
+                <p #showComments class="text-slate-600 py-2 cursor-pointer">show comments</p>
+
+                @defer (on interaction(showComments)) {
+                    <app-comments [postId]="post._id"></app-comments>
+                }
+                
+                <app-creat-comment [postId]="post._id"></app-creat-comment>
+        </div>
+    }
+</div>
