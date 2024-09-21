@@ -34,7 +34,7 @@ export class MyProfileComponent {
   }
 
   getAllPosts(){
-    this._PostService.getUserPosts(this.userId).subscribe((res)=>{
+    this._PostService.getUserPosts().subscribe((res)=>{
       console.log(res.posts);
       this.myPosts = res.posts;
     })

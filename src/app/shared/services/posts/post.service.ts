@@ -18,8 +18,8 @@ export class PostService {
     return this._HttpClient.get(`${environment.baseUrl}/posts`)
   }
 
-  getUserPosts(userId: string): Observable<any>{
-    return this._HttpClient.get(`${environment.baseUrl}/users/${userId}/posts`)
+  getUserPosts(): Observable<any>{
+    return this._HttpClient.get(`${environment.baseUrl}/users/664bcf3e33da217c4af21f00/posts`)
   }
 
   getSinglePost(postId: string): Observable<any>{
@@ -27,7 +27,7 @@ export class PostService {
   }
 
   updatePost(postId: string, data: any): Observable<any>{
-    return this._HttpClient.put(`${environment.baseUrl}/posts/postId`, data)
+    return this._HttpClient.put(`${environment.baseUrl}/posts/${postId}`, data)
   }
 
   deletePost(postId: string): Observable<any>{

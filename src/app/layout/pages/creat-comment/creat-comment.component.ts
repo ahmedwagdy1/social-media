@@ -28,7 +28,7 @@ export class CreatCommentComponent {
     this._CommentService.createComment(this.commentForm.value).subscribe((res)=> {
       this.commentForm.get('content')?.setValue(null);
       console.log(res);
-      this.allComments = res.comments;
+      this.allComments = res.comments.reverse();
     })
   }
 
